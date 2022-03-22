@@ -1,0 +1,25 @@
+{
+  "name": "employee_tracker",
+  "version": "1.0.0",
+  "description": "track and organize employees/team members",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MCORTEZM1/Employee_Tracker.git"
+  },
+  "author": "Michael Cortez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MCORTEZM1/Employee_Tracker/issues"
+  },
+  "homepage": "https://github.com/MCORTEZM1/Employee_Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.1",
+    "mysql2": "^2.3.3"
+  }
+}
