@@ -15,7 +15,7 @@ router.get('/employees', (req, res) => {
             message: 'success',
             data: row
         });
-    });;
+    });
 });
 
 // get employee by id

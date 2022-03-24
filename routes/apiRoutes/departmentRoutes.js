@@ -15,7 +15,7 @@ router.get('/departments', (req, res) => {
             message: 'success',
             data: row
         });
-    });;
+    });
 });
 
 // get department by id
@@ -31,7 +31,8 @@ router.get('/department/:id', (req, res) => {
         res.json({
             message: 'success',
             data: row
-        });
+        })
+        
     });
 });
 
@@ -54,7 +55,7 @@ router.post('/department', ({ body }, res) => {
 });
 
 // Delete a department
-router.delete('/department/:id', (req, res) => {
+const deleteDepartment = router.delete('/department/:id', (req, res) => {
     const sql = `DELETE FROM department WHERE id = ?`;
 
     db.query(sql, req.params.id, (err, result) => {
@@ -75,5 +76,10 @@ router.delete('/department/:id', (req, res) => {
         }
     });
 });
+
+function test () {
+     console.log('test routes')
+};
+
 
 module.exports = router;
