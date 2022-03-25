@@ -1,10 +1,6 @@
 const db = require('./db/connection');
 const inquirer = require('inquirer');
 const table = require('console.table');
-// const { viewAllDepartments, addNewDepartment, deleteDepartment } = require('./utils/departmentFuncs');
-// const { viewAllRoles, addNewRole, deleteRole } = require('./utils/roleFuncs');
-// const viewAllEmployees  = require('./utils/employeeFuncs');
-
 
 const promptOption = async () => {
     return inquirer.prompt([
@@ -68,16 +64,15 @@ const promptOption = async () => {
         }
     })
 };
+
 // EXIT function 
 function exit() {
     console.log('Thank you for using Employee Tracker!')
     db.end();
     process.exit();
-}
-
+};
 
 // DEPARTMENT INQUIRER FUNCTIONS
-
 function viewAllDepartments () {
     console.log('\n===ALL DEPARTMENTS LISTED BELOW===\n');
     const sql = `SELECT department.id, department.name AS department_name
@@ -133,7 +128,6 @@ function deleteDepartment() {
     });
 };
 
-
 function  departmentBudget() {
     const sql = `SELECT department.name as deparment, SUM(salary) AS total_salary_expenses
         FROM department
@@ -161,7 +155,6 @@ function  departmentBudget() {
 }
 
 // ROLE INQUIRER FUNCTIONS
-
 function viewAllRoles() {
     console.log('\n===ALL ROLES LISTED BELOW ORDERED BY DEPARTMENT ID===\n');
     const sql = `SELECT role.*, department.name AS department_name
@@ -211,14 +204,6 @@ function addNewRole() {
     });
 };
 
-// const choose = async () => {
-//     db.query(`SELECT title FROM role`, (req, res) => {
-//         let array = Object.values(JSON.parse(JSON.stringify(res)))
-//         // console.log(array)
-//         return array;
-//     })
-// };
-
 function deleteRole() {
     const sql = `DELETE FROM role WHERE id = ?`;
 
@@ -244,7 +229,6 @@ function deleteRole() {
 };
 
 // EMPLOYEE INQUIRER FUNCTIONS
-
 function viewAllEmployees() {
     console.log('\n===ALL EMPLOYEES LISTED BELOW===\n')
 
@@ -288,7 +272,7 @@ function viewByManager() {
 };
 
 function viewByDepartment() {
-    const sql = `SELECT d.name AS department_name , e.id AS employee_id, CONCAT (e.first_name, ' ', e.last_name) AS employee
+    const sql = `SELECT d.name AS department_name, e.id AS employee_id, CONCAT (e.first_name, ' ', e.last_name) AS employee
                 FROM department d
                 LEFT JOIN role r ON d.id = r.department_id 
                 INNER JOIN employee e ON r.department_id = e.role_id
@@ -313,9 +297,6 @@ function viewByDepartment() {
         });
     })
 };
-
-
-
 
 function addEployee() {
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
